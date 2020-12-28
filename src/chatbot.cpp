@@ -51,7 +51,7 @@ ChatBot::ChatBot(ChatBot &source) {
     // https://wiki.wxwidgets.org/Avoiding_Memory_Leaks#Deleting_objects_in_the_heap_with_wxWidgets
     wxDELETE(_image);
 
-    _image = new wxBitmap(*source._image);
+    _image = new wxBitmap(*source.GetImageHandle());
     _chatLogic = source._chatLogic;
     _chatLogic->SetChatbotHandle(this);
     _rootNode = source._rootNode;
@@ -68,7 +68,7 @@ ChatBot &ChatBot::operator=(ChatBot &source) {
     // https://wiki.wxwidgets.org/Avoiding_Memory_Leaks#Deleting_objects_in_the_heap_with_wxWidgets
     wxDELETE(_image);
 
-    _image = new wxBitmap(*source._image);
+    _image = new wxBitmap(*source.GetImageHandle());
     _chatLogic = source._chatLogic;
     _chatLogic->SetChatbotHandle(this);
     _rootNode = source._rootNode;
@@ -77,6 +77,7 @@ ChatBot &ChatBot::operator=(ChatBot &source) {
 
 ChatBot::ChatBot(ChatBot &&source) {
     std::cout << "ChatBot Move Constructor" << std::endl;
+
     _image = source._image;
     _chatLogic = source._chatLogic;
     _chatLogic->SetChatbotHandle(this);
@@ -89,6 +90,7 @@ ChatBot::ChatBot(ChatBot &&source) {
 
 ChatBot &ChatBot::operator=(ChatBot &&source) {
     std::cout << "ChatBot Move Assignment" << std::endl;
+
     if (this == &source) {
         return *this;
     }

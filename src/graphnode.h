@@ -5,10 +5,7 @@
 #include <string>
 #include <memory>
 #include "chatbot.h"
-
-
-// forward declarations
-class GraphEdge;
+#include "graphedge.h"
 
 class GraphNode
 {
@@ -33,7 +30,6 @@ private:
 public:
     // constructor / destructor
     GraphNode(int id);
-    ~GraphNode();
 
     // getter / setter
     int GetID() { return _id; }
