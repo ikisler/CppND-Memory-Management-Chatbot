@@ -4,11 +4,11 @@
 #include <vector>
 #include <string>
 #include "chatgui.h"
+#include "graphnode.h"
 
 // forward declarations
 class ChatBot;
 class GraphEdge;
-class GraphNode;
 
 class ChatLogic
 {
@@ -17,7 +17,7 @@ private:
     ////
 
     // data handles (owned)
-    std::vector<GraphNode *> _nodes;
+    std::vector<std::unique_ptr<GraphNode>> _nodes;
     std::vector<GraphEdge *> _edges;
 
     ////
@@ -38,7 +38,6 @@ private:
 public:
     // constructor / destructor
     ChatLogic();
-    ~ChatLogic();
 
     // getter / setter
     void SetPanelDialogHandle(ChatBotPanelDialog *panelDialog);
